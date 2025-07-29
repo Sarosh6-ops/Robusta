@@ -1,0 +1,3096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Robusta - Digital Menu</title>
+    <meta name="description" content="Roots & Shoots Cafe - Fresh Pasta, Noodles & Cold Brews" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .cold
+        {
+            color: black;
+        }
+        :root {
+            /* Nature-inspired color palette */
+            --background: hsl(210, 15%, 18%); /* The new dark background */
+    --foreground: hsl(45, 25%, 90%);
+            --card: hsl(50, 30%, 98%);
+            --card-foreground: hsl(24, 15%, 18%);
+            --primary: hsl(145, 40%, 25%);
+            --primary-foreground: hsl(45, 25%, 97%);
+            --primary-soft: hsl(145, 25%, 85%);
+            --secondary: hsl(145, 20%, 75%);
+            --secondary-foreground: hsl(24, 15%, 18%);
+            --muted: hsl(145, 15%, 92%);
+            --muted-foreground: hsl(24, 8%, 45%);
+            --accent: hsl(15, 65%, 65%);
+            --accent-foreground: hsl(45, 25%, 97%);
+            --accent-soft: hsl(15, 35%, 90%);
+            --garden-fresh: hsl(125, 45%, 50%);
+            --garden-deep: hsl(145, 50%, 20%);
+            --earth-warm: hsl(25, 25%, 80%);
+            --border: hsl(145, 15%, 88%);
+            --shadow-soft: hsla(145, 40%, 25%, 0.1);
+            --shadow-hover: hsla(145, 40%, 25%, 0.15);
+         
+        }
+
+        /* Styles for the new Add On's section */
+.add-ons-container {
+    margin-top: 2rem; /* Provides space above the add-ons section */
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--border); /* A subtle dashed line divider */
+}
+.add-on-name{
+    color: black;
+}
+.add-ons-title {
+    font-size: 1.125rem; /* Slightly larger than item names, smaller than section titles */
+    font-weight: bold;
+    color: var(--primary); /* Uses your primary green color */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.egg-allergen{
+  color: black;
+}
+.add-on-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.5rem; /* Padding within the item */
+    background: var(--muted); /* A soft, muted background color */
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--foreground);
+    margin-bottom: 0.5rem; /* Space between multiple add-on items */
+    box-shadow: 0 2px 5px var(--shadow-soft); /* Subtle shadow */
+    transition: all 0.2s ease; /* Smooth hover transition */
+}
+.non-vegetarian{
+   color: red;
+}
+.add-on-item:hover {
+    background: var(--primary-soft); /* A slightly more pronounced hover background */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+    box-shadow: 0 4px 8px var(--shadow-hover); /* Enhanced shadow on hover */
+}
+
+.add-on-name {
+    flex-grow: 1; /* Allows the name to take up available space */
+    font-weight: 500;
+    padding-right: 0.5rem; /* Space before price */
+}
+
+.add-on-price {
+    font-weight: bold;
+    color: var(--accent); /* Uses your accent color for the price */
+    font-size: 0.95rem;
+}
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+              font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* New font first */
+    /* ... keep your other body styles ... */
+            background: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Organic background pattern */
+            background-image: 
+                radial-gradient(circle at 20% 20%, var(--primary-soft) 0, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--accent-soft) 0, transparent 50%),
+                radial-gradient(circle at 40% 90%, var(--earth-warm) 0, transparent 50%);
+            background-size: 800px 800px, 600px 600px, 400px 400px;
+            background-position: 0% 0%, 100% 100%, 50% 50%;
+            background-attachment: fixed;
+        }
+
+        /* Header Styles */
+        .header {
+background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 98%, 0.85)); /* Subtle gradient */
+    backdrop-filter: blur(12px); /* Slightly more blur */
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+
+        }
+
+        .header.scrolled {
+            background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.98), hsla(50, 30%, 98%, 0.9));
+    box-shadow: 0 6px 24px hsla(145, 40%, 25%, 0.08); /* Softer, more diffuse shadow */
+        }
+
+        .header-content {
+            max-width: 28rem;
+            margin: 0 auto;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .logo-icons {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .leaf-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--garden-fresh);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .leaf-icon {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .logo h1 {
+             font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary);
+    
+    /* --- Add these properties for the rounded box --- */
+    border: 1px solid var(--border);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px; /* This creates the pill shape */
+    
+    /* --- Update the transition to include the glow effect --- */
+    transition: color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .logo:hover h1 {
+              color: var(--garden-deep);
+    border-color: var(--primary-soft); /* Keep this if you like the border change */
+
+    /* --- Updated glow effect to be more circular --- */
+    box-shadow: 0 0 10px 3px var(--primary-soft); /* Similar to the social icon glow */
+        }
+
+        .tagline {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            font-weight: 500;
+        }
+        .item-details {
+    /* Hides the content by default */
+    max-height: 0; 
+    overflow: hidden;
+    padding-top: 0;
+    margin-top: 0;
+
+    /* Smooth transition for the expand/collapse animation */
+    transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out, padding-top 0.5s ease-in-out;
+    
+    /* A subtle line to separate the main content from the details */
+    border-top: 1px solid transparent; 
+}
+
+/* Styles for when the item is expanded */
+.menu-item.expanded .item-details {
+    max-height: 500px; /* A large value to allow content to expand */
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top-color: var(--border); /* Show the separator line */
+}
+
+/* Styles for the image inside the details section */
+
+   .item-details img {
+    width: 100%;
+    /* Set a fixed height that looks good for your layout */
+    height: 150px; /* Adjust this value as needed */
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+
+/* Styles for the additional description text */
+.item-details .item-additional-info {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    line-height: 1.5;
+}
+
+        /* Navigation Styles */
+        .navigation {
+              background: hsla(50, 30%, 98%, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 5.7rem; /* 👈 Change this value from 4rem */
+    z-index: 50;
+    transition: all 0.3s ease;
+        }
+
+        .nav-content {
+              width: 100%;
+    margin: 0 auto;
+    /* Consider adjusting padding here if you want space from screen edges */
+    /* For example, padding: 0.75rem 1rem; */
+    padding: 0.75rem; /* Your current padding */
+        }
+
+        .nav-menu {
+           
+            display: flex;
+    /* For a sliding menu, flex-start is often more intuitive than space-around,
+       as it allows items to naturally extend off-screen to the right. */
+    justify-content: flex-start; /* Changed from space-around */
+    gap: 2rem;
+    position: relative;
+
+    /* --- ADD THIS KEY PROPERTY --- */
+    overflow-x: auto; /* This enables horizontal scrolling */
+    white-space: nowrap; /* Ensures all .nav-item elements stay on a single line */
+
+    /* --- REMOVE OR COMMENT OUT THIS BLOCK TO SHOW THE SCROLLBAR --- */
+    /* scrollbar-width: none; */ /* Hides scrollbar in Firefox */
+    /* -ms-overflow-style: none; */ /* Hides scrollbar in IE/Edge */
+        }
+
+        .nav-menu::-webkit-scrollbar {
+                /* display: none; */ /* This line was hiding the scrollbar in Chrome/Safari/Edge */
+    /* Instead, you can style it if you want, e.g.: */
+    height: 8px; /* Make it a bit thicker if you want */
+        }
+
+        .nav-item {
+            flex-shrink: 0;
+            padding: 0.5rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+   
+        .nav-item:hover::before {
+            left: 100%;
+            
+        }
+
+        .nav-item:not(.active) {
+            color: var(--muted-foreground);
+            background: transparent;
+        }
+
+        .nav-item:not(.active):hover {
+            background: var(--muted);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow-soft);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px var(--shadow-hover);
+        }
+
+        .nav-item.clicked {
+            animation: pulse 0.6s ease-out;
+        }
+
+        /* Menu Section Styles */
+        .menu-section {
+          scroll-margin-top: 9rem; /* 👈 Change this value from 8rem */
+    padding: 1.5rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .section-content {
+            max-width: 28rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: slideInLeft 0.8s ease-out 0.2s forwards;
+        }
+
+        .section-emoji {
+            font-size: 1.5rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .section-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: var(--primary);
+            color: white;
+        }
+
+        /* Menu Item Styles */
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .menu-item {
+           background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    /* Define variables to control the transform */
+    --translateY: 0px;
+    --scale: 1;
+
+    /* The transform now uses our variables */
+    transform: translateY(var(--translateY)) scale(var(--scale));
+
+    /* The transition will animate the change in transform */
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.3s ease;
+
+    /* The load-in animation still runs as before */
+    opacity: 0;
+    animation: slideInRight 0.6s ease-out forwards;
+        }
+
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(125, 180, 150, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .menu-item:hover {
+           --translateY: -8px;
+    --scale: 1.03;
+    
+    /* These styles remain the same */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary);
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:active {
+            transform: translateY(-2px) scale(1.01);
+            transition: transform 0.1s ease;
+        }
+
+        .menu-item.clicked {
+            animation: itemPulse 0.6s ease-out;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.875rem;
+            line-height: 1.3;
+            padding-right: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .menu-item:hover .item-name {
+            color: var(--garden-deep);
+        }
+
+        .item-price {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 0.875rem;
+            flex-shrink: 0;
+            padding: 0.25rem 0.5rem;
+            background: var(--accent-soft);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover .item-price {
+            background: var(--accent);
+            color: var(--accent-foreground);
+            transform: scale(1.05);
+        }
+
+        .item-description {
+            color: var(--muted-foreground);
+            font-size: 0.75rem;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+        }
+
+        .item-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            border: 1px solid;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            transform: scale(1.05);
+        }
+
+        .tag.vegan {
+            background: hsla(125, 45%, 50%, 0.1);
+            color: var(--garden-fresh);
+            border-color: hsla(125, 45%, 50%, 0.2);
+        }
+
+        .tag.vegetarian {
+            background: hsla(125, 45%, 50%, 0.1);
+            color: var(--garden-fresh);
+            border-color: hsla(125, 45%, 50%, 0.2);
+        }
+
+        .tag.spicy {
+            background: hsla(15, 65%, 65%, 0.1);
+            color: var(--accent);
+            border-color: hsla(15, 65%, 65%, 0.2);
+        }
+
+        .tag.gluten-free {
+            background: hsla(145, 40%, 25%, 0.1);
+            color: var(--primary);
+            border-color: hsla(145, 40%, 25%, 0.2);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: hsla(50, 30%, 98%, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            max-width: 28rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--muted-foreground);
+            margin-bottom: 0.25rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+             to {
+        opacity: 1;
+        /* The animation no longer needs to control transform */
+    }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-8px);
+            }
+            60% {
+                transform: translateY(-4px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes itemPulse {
+            0% {
+                transform: translateY(-4px) scale(1.02);
+            }
+            50% {
+                transform: translateY(-6px) scale(1.04);
+            }
+            100% {
+                transform: translateY(-4px) scale(1.02);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .header-content,
+            .nav-content,
+            .section-content,
+            .footer-content {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            .menu-item {
+                padding: 0.875rem;
+            }
+        }
+
+        /* Scrollbar styling for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--muted);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--garden-deep);
+        }
+        /* --- Add this entire block to your CSS --- */
+
+/* Styles for the intro overlay */
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background); /* Uses your main background color */
+    z-index: 9999; /* Ensures it's on top of everything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out, visibility 1s ease-out;
+}
+
+/* Styles for the logo inside the intro */
+#intro-overlay .intro-logo {
+    text-align: center;
+    /* This animation makes the logo fade in and zoom slightly */
+    animation: fadeInZoom 1.5s ease-out forwards;
+}
+
+#intro-overlay .intro-logo h1 {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+/* This class will be added by JavaScript to hide the overlay */
+#intro-overlay.hidden {
+    opacity: 0;
+    visibility: hidden; /* Removes the element from screen readers and interactions */
+}
+
+/* Keyframe animation for the logo appearing */
+@keyframes fadeInZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.header-link {
+    color: inherit; /* Makes the link use the parent text color */
+    text-decoration: none; /* Removes the underline */
+}
+    </style>
+</head>
+<body>
+    <div id="intro-overlay">
+    <div class="intro-logo">
+        <div class="logo-icons">
+            <svg class="leaf-icon" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/>
+            </svg>
+            <span>🌱</span>
+        </div>
+        <h1 style="color: black;">Cafe Robusta</h1>
+        
+    </div>
+</div>
+    <!-- Header -->
+    <header class="header" id="header">
+    <a class="header-link" href="#">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icons">
+                    <svg class="leaf-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"></path>
+                    </svg>
+                    <span>🌱</span>
+                </div>
+                <h1>Cafe Robusta</h1>
+            </div>
+            <p class="tagline">Fresh • Tasty • Natural</p>
+        </div>
+    </a>
+</header>
+
+    <!-- Navigation -->
+    <nav class="navigation" id="navigation">
+        <div class="nav-content">
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-item active" data-section="noodles-rice-pasta">
+                    <span>🍝</span> Noodles, Pastas, Rice
+                </div>
+                <div class="nav-item" data-section="small-bites-to-share">
+                    <span>🥪</span> Small Bites to Share
+                </div>
+                <div class="nav-item" data-section="nachos">
+                    <span>🌮</span> Nachos
+                </div>
+                   <div class="nav-item" data-section="indian-kitchen">
+                    <span>🍛</span> Indian Kitchen
+                </div>
+                <div class="nav-item" data-section="sandwiches-burgers">
+                    <span>🍔</span>Sandwiches-Burgers
+                </div>
+                <div class="nav-item" data-section="non-sandwiches-burgers">
+                    <span>🍔</span>Sandwiches-Burgers(Non-veg)
+                </div>
+                <div class="nav-item" data-section="pizzas">
+                    <span>🍕</span> Pizza
+                </div>
+                  <div class="nav-item" data-section="wraps">
+                    <span>🌯</span>wraps(Veg)
+                </div>
+                <div class="nav-item" data-section="non-wraps">
+                    <span>🌯</span>wraps(Non-Veg)
+                </div>
+                 <div class="nav-item" data-section="waffles">
+                    <span>🧇</span>waffles
+                </div>
+                <div class="nav-item" data-section="Frappes">
+                    <span>❄️</span>Frappes
+                </div>
+                <div class="nav-item" data-section="cold-beverages">
+                    <span>🧊</span>Cold Beverages
+                </div>
+                <div class="nav-item" data-section="Milkshakes">
+                    <span>🥛</span>Milkshakes
+                </div>
+                <div class="nav-item" data-section="mojitos">
+                    <span>🍹</span>Mojitos
+                </div>
+                 <div class="nav-item" data-section="ice-tea">
+                    <span>🍋</span>Ice tea
+                </div>
+                <div class="nav-item" data-section="Slush">
+                    <span>🍧</span>Slush
+                </div>
+                <div class="nav-item" data-section="hot-tea">
+                    <span>🍵</span>Hot Tea
+                </div>
+                 <div class="nav-item" data-section="hot-beverages">
+                    <span>☕</span>Hot Beverages
+                </div>
+                <div class="nav-item" data-section="desserts">
+                    <span>🍰</span>Desserts
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Signature Pastas section -->
+       <section class="menu-section" id="noodles-rice-pasta">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍜</span> <h2 class="section-title">Noodles / Rice / Pasta 🟩</h2> </div>
+        <div class="menu-items">
+           <div class="menu-item">
+    <div class="item-header">
+        <h3 class="item-name">Veg Hakka Noodles</h3>
+        <span class="item-price">₹119</span>
+    </div>
+    <p class="item-description">Classic stir-fried Hakka noodles tossed with fresh vegetables in a savory sauce, a popular and comforting dish.</p>
+    <div class="item-tags">
+        <span class="tag vegetarian">🌿 Vegetarian</span>
+    </div>
+
+    <div class="item-details">
+        <img src="hakkka final.avif" alt="Veg Hakka Noodles">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+</div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Veg Fried Rice</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">Fluffy rice stir-fried with a medley of fresh garden vegetables and a light soy seasoning for a delightful meal.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                 <div class="item-details">
+        <img src="vegfried.avif" alt="Veg Fried Rice">
+        <p class="item-additional-info"> A medley of garden-fresh vegetables and aromatic long-grain basmati rice, tossed to perfection with a hint of savory soy sauce.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Schezwan Fried Rice</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Spicy and aromatic fried rice prepared with vibrant Schezwan sauce and mixed vegetables, offering a fiery kick.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="Schezwan-Rice-2756.webp" alt="Schezwan rice">
+        <p class="item-additional-info">Experience a fiery kick with this bold and vibrant fried rice, wok-tossed in our house-made Schezwan sauce with crisp vegetables.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Mushroom Fried Rice</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Fragrant fried rice infused with the earthy flavors of fresh mushrooms and a blend of aromatic spices.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="Spicy-Mushroom-Fried-Rice.jpg" alt="mushroom fried rice">
+        <p class="item-additional-info"> Earthy button mushrooms are sautéed with fragrant garlic and fluffy rice to create a simple yet deeply flavorful dish.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Paneer Fried Rice</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Flavorful fried rice enriched with soft paneer cubes and crisp vegetables, offering a delightful texture and taste.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="paneer-fried-rice-recipe.jpg" alt="Schezwan rice">
+        <p class="item-additional-info"> Soft, golden-brown cubes of paneer provide a rich, protein-packed addition to our classic vegetable fried rice.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Garden Pasta</h3>
+                    <span class="item-price">₹199</span>
+                </div>
+                <p class="item-description">Al dente pasta tossed with a medley of fresh seasonal vegetables and a light, herbed olive oil sauce, truly from our garden.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="spaghetti-saute-gray-plate-with-tomatoes-basil.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">This pasta is lightly tossed in herbed olive oil with a vibrant mix of seasonal garden vegetables like zucchini, broccoli, and cherry tomatoes.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Alfredo Pasta</h3>
+                    <span class="item-price">₹199</span>
+                </div>
+                <p class="item-description">Creamy and rich, our vegetarian Alfredo pasta features al dente pasta coated in a velvety Parmesan cream sauce.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="delicious-pasta-plate.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Indulge in our velvety Alfredo sauce, crafted with rich cream and freshly grated Parmesan cheese, clinging perfectly to every strand of pasta.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Arabiata Pasta</h3>
+                    <span class="item-price">₹209</span>
+                </div>
+                <p class="item-description">Traditional pasta tossed in a fiery tomato sauce with garlic, red chilies, and fresh basil, delivering a delicious kick.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="arrabiata-pasta-1.jpg" alt="Schezwan rice">
+        <p class="item-additional-info"> Named for its 'angry' kick, our Arabiata sauce is a fiery blend of sun-ripened tomatoes, fresh garlic, and a generous amount of red chili flakes.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Arabiata Creamy Pasta</h3>
+                    <span class="item-price">₹219</span>
+                </div>
+                <p class="item-description">A perfect balance of spicy and creamy, this pasta features our zesty Arabiata sauce mellowed with a touch of rich cream.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="CreamyArrabbiataPasta.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">The perfect marriage of two classics, blending the spicy zest of Arabiata with a touch of smooth cream for a balanced, luxurious finish.</p>
+    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="noodles-rice-pasta">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍜</span> <h2 class="section-title">Noodles / Rice / Pasta 🟩 🔴</h2> </div>
+        <div class="menu-items">
+            
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Egg Hakka Noodles</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Stir-fried Hakka noodles tossed with scrambled egg and fresh vegetables in a savory sauce, a quick and delicious meal.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag egg-allergen">🥚 Egg</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="EggNoodles3.webp" alt="Schezwan rice">
+        <p class="item-additional-info"> Silky noodles and crisp vegetables are elevated with fluffy, protein-rich scrambled egg, stir-fried for a satisfying and complete meal.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Fried Rice</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">Fluffy fried rice with tender chicken pieces, vibrant vegetables, and a savory seasoning, stir-fried to perfection.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="chickenfried.webp" alt="Schezwan rice">
+        <p class="item-additional-info">Tender, juicy pieces of chicken are stir-fried with our signature fried rice, creating a hearty and flavorful classic that never disappoints.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Egg Fried Rice</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Comforting fried rice with fluffy scrambled egg and fresh vegetables, lightly seasoned for a satisfying dish.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag egg-allergen">🥚 Egg</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="EggFriedRice4.webp" alt="Schezwan rice">
+        <p class="item-additional-info">A comforting bowl of perfectly cooked rice, enriched with golden, savory scrambled eggs and a light, delicate seasoning.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Hakka Noodles</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">Classic Hakka noodles stir-fried with tender chicken strips and crisp vegetables in a flavorful savory sauce.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="chickken hakka.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Succulent strips of chicken join a medley of crunchy vegetables and savory noodles in this hearty, stir-fried favorite.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Alfredo Pasta</h3>
+                    <span class="item-price">₹239</span>
+                </div>
+                <p class="item-description">Al dente pasta with tender chicken pieces, coated in a rich and creamy Parmesan Alfredo sauce.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="One-Pot_Creamy_Chicken_And_Broccoli_Pasta_THUMB.webp" alt="Schezwan rice">
+        <p class="item-additional-info">Juicy, grilled chicken breast is sliced and tossed in our signature creamy Parmesan Alfredo sauce for a truly decadent meal.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Arabiata Pasta</h3>
+                    <span class="item-price">₹239</span>
+                </div>
+                <p class="item-description">Spicy Arabiata sauce with tender chicken and pasta, a fiery and flavorful Italian classic.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                
+        <div class="item-details">
+        <img src="chicken_arrabiata_88408_16x9.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">For those who like it hot, tender pieces of chicken are simmered in our spicy and zesty Arabiata tomato sauce.</p>
+    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Savory Bites -->
+        
+        
+    <section class="menu-section" id="small-bites-to-share">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍟</span> <h2 class="section-title">Small Bites to Share 🟩</h2> </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Gobi Manchurian</h3>
+                    <span class="item-price">₹109</span>
+                </div>
+                <p class="item-description">Crispy fried cauliflower florets tossed in a spicy and tangy Indo-Chinese Manchurian sauce.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="Dry_gobi_manchurian@palates_Desire-1024x692.webp" alt="Schezwan rice">
+        <p class="item-additional-info"> Crispy cauliflower florets are fried to a perfect golden-brown and then tossed in a sweet, spicy, and tangy Manchurian sauce.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Babycorn Manchurian</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Tender baby corn deep-fried and coated in a flavorful and aromatic Manchurian sauce.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="Baby-Corn-Manchurian-2.webp" alt="Schezwan rice">
+        <p class="item-additional-info">Tender-crisp baby corn provides a delightful bite, coated in our signature Manchurian sauce with bell peppers and onions.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Paneer Manchurian</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">Soft paneer cubes tossed in a classic Indo-Chinese Manchurian sauce with bell peppers and onions.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="Paneer-Manchurian-7-1.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Soft cubes of fresh paneer are lightly battered and fried before being tossed in our flavorful Indo-Chinese sauce.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Mushroom Manchurian</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Fresh mushrooms deep-fried and stir-fried in a spicy and savory Manchurian gravy.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="Mushroom-manchurian-2-e1723478711792.jpg.webp" alt="Schezwan rice">
+        <p class="item-additional-info">Whole button mushrooms offer a juicy, umami-packed bite, perfectly complemented by our savory Manchurian gravy.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Pepper Mushroom</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">Sautéed mushrooms tossed with freshly crushed black pepper and bell peppers for a spicy, aromatic bite.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="mushroom-pepper-fry-recipe.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">A simple yet bold appetizer featuring fresh mushrooms stir-fried with a generous amount of cracked black pepper and crisp bell peppers.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Paneer 65</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">Spicy, deep-fried paneer cubes marinated in traditional South Indian spices, a popular appetizer.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="paneer65.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">A fiery South Indian classic, our Paneer 65 is marinated in a blend of ginger, garlic, and hot spices before being fried to a perfect crisp.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">French Fries</h3>
+                    <span class="item-price">₹109</span>
+                </div>
+                <p class="item-description">Crispy golden French fries, lightly salted and perfect for dipping or as a classic side.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="easy-french-fries-1.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Golden, crispy, and perfectly salted—our classic fries are made from premium potatoes and cooked to perfection for the ideal snack.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Peri Peri Fries</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Our crispy French fries tossed in a fiery Peri Peri seasoning for a spicy and flavorful kick.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="peri-peri-french-fries-8231-01.jpg" alt="Schezwan rice">
+        <p class="item-additional-info"> Our classic golden fries get a fiery, zesty makeover with a generous dusting of our addictive Peri Peri spice blend.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Tandoori Fries</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Crispy fries seasoned with aromatic tandoori spices, offering a unique and savory Indian twist.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="Tandoori-Masala-Fries-02.webp" alt="Schezwan rice">
+        <p class="item-additional-info"> Experience a unique fusion of flavors with our crispy fries tossed in a smoky and aromatic tandoori masala seasoning.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cheesy Sticky Fries</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Golden fries generously topped with gooey melted cheese, creating a deliciously addictive snack.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="Cheese-Fries-005.webp" alt="Schezwan rice">
+        <p class="item-additional-info">A truly indulgent treat, these fries are smothered in a rich, gooey, and savory melted cheese sauce that's perfect for sharing.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Potato Twister</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">Crispy spiral-cut potato, seasoned and deep-fried to golden perfection, a fun and tasty snack.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="twister.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">A whole potato, spiral-cut and fried to a delightful crisp on a stick, seasoned for a fun and flavorful snack.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Potato Wedges</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Thick-cut potato wedges, seasoned and perfectly fried until crispy outside and fluffy inside.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="baked-potato-wedges-8sm-7.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Thick, skin-on potato wedges are seasoned and fried until they're fluffy on the inside and perfectly crispy on the outside.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Veg Nuggets</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Crunchy on the outside, soft on the inside, these delicious vegetarian nuggets are a perfect snack.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="vegnuggets.jpg" alt="Schezwan rice">
+        <p class="item-additional-info"> A delightful vegetarian snack with a satisfyingly crisp and golden breading that gives way to a soft, savory vegetable filling.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Potato Shots</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Bite-sized potato delights, perfectly seasoned and fried, great for a quick snack or appetizer.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="potatoshots.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Bite-sized morsels of seasoned, mashed potato with a crispy golden shell, perfect for popping and dipping.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cheese Garlic Bread</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Toasted bread slathered with garlic butter and melted cheese, a classic savory indulgence.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="cheese-garlic-bread-recipe.webp" alt="Schezwan rice">
+        <p class="item-additional-info">Soft bread is toasted with a rich garlic butter spread and then generously topped with gooey, melted mozzarella cheese.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cheese Chilly Toast</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Spicy and cheesy, this toasted bread is topped with melted cheese, green chilies, and a hint of herbs.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="veg-chilli-cheese-toast.jpg" alt="Schezwan rice">
+        <p class="item-additional-info"> A perfect savory snack featuring a zesty mix of chopped green chilies and melted cheese on a crispy toasted slice.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Pizza Sticks</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">Cheesy breadsticks seasoned with pizza spices, served with a tangy dip, perfect for sharing.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="Baked_Pizza_Sticks_with_Jalapeno_Dip_-_Snackible_1024x1024@2x.webp" alt="Schezwan rice">
+        <p class="item-additional-info">All the fun of pizza in a dippable stick! Our soft breadsticks are baked with garlic, Italian herbs, and melted mozzarella, served with a marinara dip.</p>
+    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="small-bites-to-share">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍟</span> <h2 class="section-title">Small Bites to Share 🟩 🔴</h2> </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Nuggets</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Crispy and tender chicken nuggets, seasoned to perfection and ideal for a quick bite.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="Baked-Chicken-Nuggets-12.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Fingers</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Golden-fried chicken breast strips, perfectly crunchy on the outside and juicy within, great with your favorite dip.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="air-fryer-chicken-nuggets-8-900x900.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Popcorn</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Bite-sized pieces of succulent chicken, breaded and fried to a crispy golden perfection, a delightful snack.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="Popcorn-Chicken.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Wings</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">Juicy chicken wings, perfectly seasoned and cooked until crispy, a classic appetizer for sharing.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="bbq-chicken-wings-recipe-featured-image.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Lollypop</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">Popular Indo-Chinese chicken drumettes, marinated, deep-fried, and served with a spicy dip.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="lollipop.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken 65</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">Spicy and flavorful deep-fried chicken bites, marinated in a blend of South Indian spices, a renowned appetizer.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="Chicken-65-11-1024x1536.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Manchurian</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">Crispy chicken pieces tossed in a tangy and spicy Indo-Chinese Manchurian sauce with bell peppers.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="chickenmanchurian.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Drumstick</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">Perfectly seasoned and cooked chicken drumsticks, crispy on the outside and tender on the inside, great for a hearty snack.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                <div class="item-details">
+        <img src="chickendrum.avif" alt="Schezwan rice">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Pepper Dry</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">Succulent chicken pieces tossed in a spicy dry preparation with freshly crushed black pepper and aromatic spices.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+        <img src="chickenpepperdry.jpg" alt="Schezwan rice">
+        <p class="item-additional-info">Our noodles are made fresh daily and stir-fried in a searing hot wok with crunchy carrots, bell peppers, and cabbage for an authentic texture and taste.</p>
+    </div>
+            </div>
+        </div>
+    </div>
+</section>
+   <section class="menu-section" id="nachos">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🌮</span> <h2 class="section-title">Nachos</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cheesy Nachos</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">Crispy corn tortilla chips generously topped with a rich, melted cheese sauce, perfect for a classic snack.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="cheesy nachos.webp" alt="Cheesy Nachos">
+    <p class="item-additional-info">Crispy corn tortilla chips generously topped with a rich, velvety melted cheese sauce, perfect for a classic shareable snack.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Spicy Nachos</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">A fiery twist on classic nachos, loaded with melted cheese, jalapeños, and a spicy salsa for an extra kick.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div><div class="item-details">
+    <img src="nachos-1160x655-1.jpg" alt="Spicy Nachos">
+    <p class="item-additional-info">A fiery twist on classic nachos, loaded with melted cheese, spicy jalapeños, and a tangy salsa for an extra kick.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Paneer Nachos</h3>
+                    <span class="item-price">₹179</span>
+                </div>
+                <p class="item-description">Crispy nachos layered with creamy paneer tikka, melted cheese, and a blend of Mexican spices, a unique fusion.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="Nachos-scaled-scaled.webp" alt="Paneer Nachos">
+    <p class="item-additional-info">Crispy nachos layered with creamy paneer tikka, melted cheese, and a blend of Mexican spices for a unique and flavorful fusion.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Nachos</h3>
+                    <span class="item-price">₹179</span>
+                </div>
+                <p class="item-description">Loaded with seasoned pulled chicken, melted cheese, fresh salsa, and sour cream on a bed of crispy tortilla chips.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div><div class="item-details">
+    <img src="Spicy_Chicken_Nachos_Recipe_With_Salsa_And_Sour_Cream_1_054c10b8d2.avif" alt="Chicken Nachos">
+    <p class="item-additional-info">Loaded with seasoned pulled chicken, melted cheese, fresh pico de gallo, and a dollop of sour cream on a bed of crispy tortilla chips.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+      <section class="menu-section" id="indian-kitchen">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍛</span> <h2 class="section-title">Indian Kitchen 🟩 🔴</h2> </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Classic Aloo Paratha</h3>
+                    <span class="item-price">₹109</span>
+                </div>
+                <p class="item-description">A traditional Indian flatbread stuffed with a spiced mashed potato filling, served with a side of pickle or curd.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="parata.avif" alt="Classic Aloo Paratha">
+    <p class="item-additional-info">A traditional North Indian flatbread, pan-fried to golden perfection and stuffed with a spiced mashed potato filling.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Mix Veg Paratha</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">Wholesome whole wheat paratha generously stuffed with a flavorful mix of seasonal vegetables and spices.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="mixparata.webp" alt="Mix Veg Paratha">
+    <p class="item-additional-info">Wholesome whole wheat paratha generously stuffed with a flavorful mix of finely chopped seasonal vegetables and aromatic spices.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Paneer Paratha</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">Soft and flaky paratha filled with crumbled paneer (Indian cottage cheese) and aromatic spices, a rich and satisfying choice.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="Paneer-Paratha-Homemade.jpg" alt="Paneer Paratha">
+    <p class="item-additional-info">Soft and flaky paratha filled with crumbled Indian cottage cheese (paneer) and aromatic spices, a rich and satisfying choice.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Veg Biryani</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">Fragrant basmati rice cooked with an assortment of fresh vegetables and aromatic spices, a true Hyderabadi delight.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="veg-biryani-1024x1536.jpg" alt="Veg Biryani">
+    <p class="item-additional-info">Fragrant basmati rice slow-cooked (dum style) with an assortment of fresh vegetables, fried onions, and a blend of whole spices.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Egg Biryani</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">Aromatic basmati rice layered with perfectly boiled eggs and rich, flavorful spices, a comforting and hearty meal.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag egg-allergen">🥚 Egg</span>
+                </div><div class="item-details">
+    <img src="Egg-Biryani-3.jpg" alt="Egg Biryani">
+    <p class="item-additional-info">Aromatic basmati rice layered with perfectly boiled eggs that have been marinated and fried in rich, flavorful biryani spices.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Biryani</h3>
+                    <span class="item-price">₹199</span>
+                </div>
+                <p class="item-description">Succulent chicken pieces cooked with long-grain basmati rice and a blend of traditional Indian spices, slow-cooked to perfection.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div><div class="item-details">
+    <img src="Chicken-Biryani.jpg" alt="Chicken Biryani">
+    <p class="item-additional-info">Succulent chicken pieces cooked with long-grain basmati rice and a blend of traditional Indian spices, slow-cooked to perfection.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section class="menu-section" id="sandwiches-burgers">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍔</span> <h2 class="section-title">Sandwiches & Burgers 🟩</h2> </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Classic Club Sandwich</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">A timeless triple-layered sandwich packed with fresh vegetables, cheese, and a creamy spread, toasted to perfection.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="classic.jpg" alt="Classic Club Sandwich">
+    <p class="item-additional-info">A true classic, featuring three layers of perfectly toasted bread stacked with crisp lettuce, fresh tomato, and a creamy spread for a satisfying crunch in every bite.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cheese Corn Sandwich</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">A delicious and comforting sandwich filled with a creamy blend of sweet corn and melted cheese, grilled to a golden crisp.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="cornsand.jpg" alt="Cheese Corn Sandwich">
+    <p class="item-additional-info">A warm and comforting favorite, filled with a creamy blend of sweet corn, herbs, and gooey melted cheese, grilled to a perfect golden crisp.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Veg Grill Sandwich</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">A hearty grilled sandwich loaded with a medley of fresh, seasoned garden vegetables and a touch of tangy sauce.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="veg-cheese-sandwich-recipe.jpg" alt="Veg Grill Sandwich">
+    <p class="item-additional-info">Packed with flavor, this sandwich is loaded with a medley of seasoned and grilled garden vegetables like bell peppers, zucchini, and onions for a healthy, satisfying meal.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Paneer Tikka Sandwich</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Spiced paneer tikka pieces nestled between bread slices, grilled to perfection, offering a flavorful Indian fusion experience.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+    <img src="paneersanw.jpg" alt="Paneer Tikka Sandwich">
+    <p class="item-additional-info">A delicious fusion of flavors, featuring tender cubes of marinated paneer tikka, crunchy onions, and mint chutney pressed inside grilled bread.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Classic Veg Burger</h3>
+                    <span class="item-price">₹99</span>
+                </div>
+                <p class="item-description">Our signature vegetarian patty, fresh lettuce, tomato, onion, and a tangy sauce, all in a soft burger bun.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="burger.avif" alt="Classic Veg Burger">
+    <p class="item-additional-info">Our signature burger, built with a savory vegetable patty, fresh lettuce, ripe tomato, and our special tangy sauce on a soft, toasted bun.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Grill Cheese Burger</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">A delightful veggie burger with a gooey grilled cheese patty, fresh veggies, and our special sauce.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="grillchese.jpg" alt="Grill Cheese Burger">
+    <p class="item-additional-info">The ultimate comfort food, this burger features a crispy, golden-fried patty of gooey melted cheese, complemented by fresh veggies and our house sauce.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Barbeque Burger</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">A smoky vegetarian patty topped with zesty barbecue sauce, crunchy onions, and fresh greens in a toasted bun.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="bbqbug.jpg" alt="Barbeque Burger">
+    <p class="item-additional-info">A taste of the grill, this burger features a smoky veggie patty slathered in zesty barbecue sauce and topped with crunchy onion rings for the perfect texture.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Mexican Burger</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">Spice up your day with our Mexican-inspired veggie burger, featuring a flavorful patty, salsa, jalapeños, and a hint of spice.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+    <img src="mexicanburger.jpg" alt="Mexican Burger">
+    <p class="item-additional-info">Spice up your meal with this zesty burger, featuring a flavorful veggie patty, tangy salsa, creamy avocado, and a hint of jalapeño heat.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="non-sandwiches-burgers">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍔</span> <h2 class="section-title">Sandwiches & Burgers 🟩 🔴</h2> </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Grill Sandwich</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">Succulent grilled chicken slices layered with fresh vegetables and a creamy spread, toasted to golden perfection.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="chickengrill.jpg" alt="Chicken Grill Sandwich">
+    <p class="item-additional-info">Juicy, tender strips of chicken breast are seasoned and grilled to perfection, then layered with fresh veggies and a light creamy spread for a classic, hearty sandwich.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Spicy Chicken Sandwich</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">For those who love a kick! Grilled chicken tossed in a fiery sauce with crisp lettuce and a cool dressing.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+    <img src="spicy-fried-chicken-sandwich-5220981-hero-01-f742363e943f4fc1aff902da3342765a.jpg" alt="Spicy Chicken Sandwich">
+    <p class="item-additional-info">For those who love a kick! A crispy chicken fillet is tossed in our signature fiery sauce and served with crisp lettuce and a cooling dressing to balance the heat.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Spicy Chicken Burger</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">A juicy chicken patty seasoned with bold spices, topped with fresh veggies and a zesty sauce for a fiery bite.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+    <img src="chicken-burger.webp" alt="Spicy Chicken Burger">
+    <p class="item-additional-info">A succulent chicken patty seasoned with a bold blend of spices, topped with melted cheese, jalapeños, and a zesty chipotle sauce for a fiery bite.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Barbeque Chicken Burger</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">A succulent chicken patty slathered with smoky barbecue sauce, topped with crisp onions and fresh greens.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="DSCF0220-scaled.jpg" alt="Barbeque Chicken Burger">
+    <p class="item-additional-info">Smoky, sweet, and savory, this burger features a tender chicken patty slathered in rich barbecue sauce and topped with crunchy onion rings.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Grill Cheese Chicken Burger</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">A unique fusion of flavors: a juicy chicken patty paired with a delicious grilled cheese patty, fresh veggies, and special sauce.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="grillchese.jpg" alt="Grill Cheese Chicken Burger">
+    <p class="item-additional-info">The best of both worlds! This unique burger combines a juicy chicken patty with a crispy, golden-fried patty of gooey melted cheese for an unforgettable meal.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section class="menu-section" id="pizzas">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍕</span> <h2 class="section-title">Pizzas</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cheese & Corn Pizza</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">A classic combination of gooey mozzarella cheese and sweet golden corn kernels on our signature crust.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="cornpizza.webp" alt="Cheese & Corn Pizza">
+    <p class="item-additional-info">A simple yet satisfying classic, featuring a generous layer of gooey mozzarella cheese and sweet golden corn on our hand-tossed crust.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Margarita Pizza</h3>
+                    <span class="item-price">₹169 / ₹199</span> </div>
+                <p class="item-description">The timeless Italian classic with fresh mozzarella, vibrant tomato sauce, and aromatic basil leaves. (Available in Regular/Large)</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="Margherita-Pizza.webp" alt="Margarita Pizza">
+    <p class="item-additional-info">The timeless Italian flag on a plate: fresh mozzarella, rich san marzano tomato sauce, and aromatic basil leaves on a thin, crispy crust.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cheese Burst Pizza</h3>
+                    <span class="item-price">₹199 / ₹239</span>
+                </div>
+                <p class="item-description">Experience an explosion of cheese! Our signature crust filled with liquid cheese, topped with more mozzarella. (Available in Regular/Large)</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="cheeseburst.jpg" alt="Cheese Burst Pizza">
+    <p class="item-additional-info">An explosion of cheese in every bite! Our signature crust is filled with molten liquid cheese and topped with even more mozzarella.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Stuffed American Zombie</h3>
+                    <span class="item-price">₹199 / ₹239</span>
+                </div>
+                <p class="item-description">A bold and hearty pizza loaded with spicy chicken, jalapenos, onions, and a blend of cheeses, all on a stuffed crust. (Available in Regular/Large)</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+    <img src="pizzazombiee.avif" alt="Stuffed American Zombie Pizza">
+    <p class="item-additional-info">A bold and hearty pizza loaded with spicy chicken, fiery jalapenos, crunchy onions, and a blend of cheeses on a stuffed crust.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Smoked Barbeque</h3>
+                    <span class="item-price">₹199 / ₹239</span>
+                </div>
+                <p class="item-description">Tender chunks of smoked BBQ chicken, red onions, and mozzarella cheese on a tangy barbecue sauce base. (Available in Regular/Large)</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="smokedbarb.jpg" alt="Smoked Barbeque Pizza">
+    <p class="item-additional-info">Tender chunks of smoked BBQ chicken, crisp red onions, and mozzarella cheese on a tangy barbecue sauce base instead of traditional tomato.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Paneer Exotica Pizza</h3>
+                    <span class="item-price">₹219</span>
+                </div>
+                <p class="item-description">Exotic marinated paneer, colorful bell peppers, and onions on a rich creamy sauce base, crowned with mozzarella.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="paneerexotic.jpg" alt="Paneer Exotica Pizza">
+    <p class="item-additional-info">Exotic marinated paneer tikka, colorful bell peppers, and sweet onions on a rich creamy sauce base, crowned with mozzarella cheese.</p>
+</div>
+            </div>
+        </div>
+
+        <div class="add-ons-container">
+            <h3 class="add-ons-title">Add On's</h3>
+            <div class="add-on-item">
+                <span class="add-on-name">Sweet Corn, Extra Cheese</span>
+                <span class="add-on-price">₹39</span>
+            </div>
+            </div>
+    </div>
+</section>
+        <section class="menu-section" id="wraps">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🌯</span> <h2 class="section-title">Wraps 🟩</h2> </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Paneer Street Wrap</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">A vibrant street-style wrap filled with spiced paneer, fresh veggies, and tangy sauces, all rolled in a soft tortilla.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="vegwrap.jpg" alt="Paneer Exotica Pizza">
+    <p class="item-additional-info">Exotic marinated paneer tikka, colorful bell peppers, and sweet onions on a rich creamy sauce base, crowned with mozzarella cheese.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Corn & Spinach Wrap</h3>
+                    <span class="item-price">₹109</span>
+                </div>
+                <p class="item-description">A wholesome and flavorful wrap packed with sweet corn, fresh spinach, and a hint of creamy sauce.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="veg spinach.jpg" alt="Corn & Spinach Wrap">
+    <p class="item-additional-info">A wholesome and flavorful wrap packed with sweet corn, fresh spinach, and a hint of creamy garlic sauce for a healthy bite.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Corn & Mushroom Wrap</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">A savory combination of earthy mushrooms and sweet corn, perfectly seasoned and wrapped for a delightful bite.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="mushroomwrap.jpg" alt="Corn & Mushroom Wrap">
+    <p class="item-additional-info">A savory combination of earthy mushrooms and sweet corn, perfectly seasoned and sautéed before being wrapped in a soft tortilla.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cheesy Chips Wrap</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Crunchy potato chips, gooey cheese, and a zesty sauce, all snugly wrapped in a soft tortilla for a fun and indulgent snack.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="wrap.jpg" alt="Cheesy Chips Wrap">
+    <p class="item-additional-info">Crunchy potato chips, gooey melted cheese, and a zesty sauce, all snugly wrapped in a soft tortilla for a fun and indulgent snack.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Mexican Pizza Wrap</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">All the flavors of a Mexican pizza, wrapped up! Featuring beans, corn, cheese, and spicy salsa in a convenient tortilla.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div><div class="item-details">
+    <img src="mexicanwrap.jpg" alt="Mexican Pizza Wrap">
+    <p class="item-additional-info">All the flavors of a Mexican pizza, wrapped up! Featuring beans, corn, cheese, and spicy salsa in a convenient grilled tortilla.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="non-wraps">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🌯</span> <h2 class="section-title">Wraps 🟩 🔴</h2> </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Egg & Cheese Wrap</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">A simple yet satisfying wrap filled with fluffy scrambled egg and melted cheese, perfect for a quick and comforting bite.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag egg-allergen">🥚 Egg</span> </div>
+                    <div class="item-details">
+    <img src="eggwrap.jpg" alt="Egg & Cheese Wrap">
+    <p class="item-additional-info">A simple yet satisfying wrap filled with fluffy scrambled egg and melted cheddar cheese, perfect for a quick and comforting bite.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chicken Street Wrap</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">A popular street-style wrap with tender, seasoned chicken pieces, fresh veggies, and a zesty sauce, rolled in a soft tortilla.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                </div><div class="item-details">
+    <img src="chickenstreetwrap.jpg" alt="Chicken Street Wrap">
+    <p class="item-additional-info">A popular street-style wrap with tender, seasoned chicken pieces, fresh veggies, and a zesty mint-coriander sauce.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Spicy Chicken Wrap</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">For the adventurous palate! This wrap features fiery spicy chicken, crisp vegetables, and a tantalizing sauce for a flavorful kick.</p>
+                <div class="item-tags">
+                    <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
+                    <span class="tag spicy">🌶️ Spicy</span>
+                </div>
+                <div class="item-details">
+    <img src="spicy wrap.jpeg" alt="Spicy Chicken Wrap">
+    <p class="item-additional-info">For the adventurous palate! This wrap features fiery spicy chicken, crisp vegetables, and a tantalizing sauce for a flavorful kick.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="waffles">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🧇</span> <h2 class="section-title">Waffles</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Belgium Classic</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Our traditional crispy and fluffy Belgian waffle, lightly dusted with powdered sugar, a timeless favorite.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="belgium.webp" alt="Belgium Classic Waffle">
+    <p class="item-additional-info">Our traditional crispy and fluffy Belgian waffle, lightly dusted with powdered sugar and served with a side of maple syrup.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Dark & White Fantasy</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">A decadent waffle drizzled with both rich dark chocolate and creamy white chocolate sauces for a delightful contrast.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="dark.jpg" alt="Dark & White Fantasy Waffle">
+    <p class="item-additional-info">A decadent waffle generously drizzled with both rich dark chocolate and creamy white chocolate sauces for a delightful contrast.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Classic with Ice Cream</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">Our signature Belgian classic waffle served warm with a scoop of cool vanilla ice cream, a perfect hot and cold treat.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="icewaffle.avif" alt="Classic with Ice Cream">
+    <p class="item-additional-info">Our signature Belgian classic waffle served warm with a scoop of cool vanilla bean ice cream, a perfect hot and cold treat.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Nutella</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">A warm, fluffy waffle generously spread with the irresistible hazelnut-chocolate goodness of Nutella.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="nutella.jpg" alt="Nutella Waffle">
+    <p class="item-additional-info">A warm, fluffy waffle generously spread with the irresistible hazelnut-chocolate goodness of Nutella and topped with chopped nuts.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Berry Velvet Cake</h3>
+                    <span class="item-price">₹399</span>
+                </div>
+                <p class="item-description">A moist, tender velvet cake layered with creamy frosting and topped with a medley of fresh mixed berries.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="velvet.jpg" alt="Berry Velvet Cake">
+    <p class="item-additional-info">A moist, tender red velvet cake layered with creamy frosting and topped with a medley of fresh, tart mixed berries.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Death by Chocolate Cake</h3>
+                    <span class="item-price">₹399</span>
+                </div>
+                <p class="item-description">The ultimate chocolate indulgence: a rich, decadent chocolate cake with layers of dark fudge and chocolate ganache.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="death-by-chocolate-2-layer-1280x720.jpg" alt="Death by Chocolate Cake">
+    <p class="item-additional-info">The ultimate chocolate indulgence: a rich, decadent chocolate cake with layers of dark fudge, chocolate ganache, and chocolate shavings.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Waffle Cake - Dark & White</h3>
+                    <span class="item-price">₹399</span>
+                </div>
+                <p class="item-description">A grand, shareable waffle cake featuring layers of our soft waffle, drizzled with both dark and white chocolate sauces.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="id.avif" alt="Waffle Cake - Dark & White">
+    <p class="item-additional-info">A grand, shareable cake made from stacked waffles, drizzled with both dark and white chocolate sauces and topped with chocolate curls.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section class="menu-section" id="Frappes">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">❄️</span> <h2 class="section-title">Frappe's</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Dark Frappe</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">An intensely rich and velvety chocolate frappe, blended to perfection for the ultimate cocoa experience.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="dark frappe.jpg" alt="Dark Frappe">
+    <p class="item-additional-info">An intensely rich and velvety chocolate frappe, blended to perfection for the ultimate dark cocoa experience.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Velvet Frappe</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">Smooth and luxurious, this frappe offers a creamy, subtly sweet taste with a hint of red velvet charm.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="velvet frappe.jpg" alt="Velvet Frappe">
+    <p class="item-additional-info">Smooth and luxurious, this frappe offers a creamy, subtly sweet taste with a hint of red velvet charm and cream cheese flavor.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Brownie Feast</h3>
+                    <span class="item-price">₹179</span>
+                </div>
+                <p class="item-description">A decadent frappe loaded with chunks of fudgy brownie, blended with chocolate and topped with whipped cream.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="chocolate-brownie-frappe.jpg" alt="Brownie Feast Frappe">
+    <p class="item-additional-info">A decadent frappe loaded with chunks of fudgy brownie, blended with rich chocolate and topped with whipped cream.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Hide & Seek Coffee</h3>
+                    <span class="item-price">₹179</span>
+                </div>
+                <p class="item-description">A playful blend of coffee and crushed Hide & Seek biscuits, creating a unique and nostalgic flavor.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="hidenseek.avif" alt="Hide & Seek Coffee Frappe">
+    <p class="item-additional-info">A playful and nostalgic blend of cold coffee and crushed Hide & Seek chocolate chip biscuits for a unique flavor.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Oreo Frappe</h3>
+                    <span class="item-price">₹179</span>
+                </div>
+                <p class="item-description">The classic combination of crushed Oreo cookies and creamy vanilla ice cream, blended into a frosty delight.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="oreofrappe.webp" alt="Oreo Frappe">
+    <p class="item-additional-info">The classic combination of crushed Oreo cookies and creamy vanilla ice cream, blended into a frosty and delightful shake.</p>
+</div>
+            </div>
+        </div>
+    </div>
+    </section>
+<section class="menu-section" id="cold-beverages">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🧊</span> <h2 class="section-title">Cold Beverages</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cold Brew/Black Coffee with Cranberry</h3>
+                    <span class="item-price">₹109</span>
+                </div>
+                <p class="item-description">A refreshing twist on classic cold brew, infused with the tart sweetness of cranberry for a unique, invigorating sip.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="coldbrew.jpg" alt="Cold Brew with Cranberry">
+    <p class="item-additional-info">A refreshing twist on classic cold brew, infused with the tart sweetness of cranberry for a unique, invigorating sip.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Classic Cold Coffee</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">A timeless favorite, our creamy cold coffee is perfectly blended for a smooth, chilled, and satisfying coffee experience.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="classiccold.jpg" alt="Classic Cold Coffee">
+    <p class="item-additional-info">A timeless favorite, our creamy cold coffee is perfectly blended for a smooth, chilled, and satisfying coffee experience.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Oreo Coffee</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Indulge in a delightful blend of rich coffee and crushed Oreo cookies, creating a sweet and crunchy cold beverage.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="oreo coffee.jpg" alt="Oreo Coffee">
+    <p class="item-additional-info">Indulge in a delightful blend of rich, cold coffee and crushed Oreo cookies, creating a sweet and crunchy cold beverage.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Choco/Irish Frappe</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Choose your delight: a rich chocolate frappe for cocoa lovers or a smooth, non-alcoholic Irish cream flavored blend.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="chocoirish.avif" alt="Choco/Irish Frappe">
+    <p class="item-additional-info">Choose your delight: a rich chocolate frappe for cocoa lovers or a smooth, non-alcoholic Irish cream flavored blend.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Mud Coffee</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">Our signature thick and rich mud coffee, a decadent blend designed for true coffee enthusiasts seeking a robust flavor.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="mudcoffe.jpg" alt="Mud Coffee">
+    <p class="item-additional-info">Our signature thick and rich mud coffee, a decadent and intense blend designed for true coffee enthusiasts seeking a robust flavor.</p>
+</div>
+            </div>
+        </div>
+
+        <div class="add-ons-container">
+            <h3 class="add-ons-title">Add On's</h3>
+            <div class="add-on-item">
+                <span class="add-on-name">Ice-Cream, Whipped Cream</span>
+                <span class="add-on-price">₹39</span>
+            </div>
+            </div>
+    </div>
+</section>
+<section class="menu-section" id="Milkshakes">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🥛</span> <h2 class="section-title">Milk Shakes</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Butterscotch / Mango / Black Current / Litchi / Strawberry / Pineapple / Kesar Badam / Oreo</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">Choose from our wide selection of classic milkshake flavors, perfectly blended to refresh and delight your taste buds.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="milkshakes.png" alt="Classic Milkshakes">
+    <p class="item-additional-info">Choose from our wide selection of classic milkshake flavors, perfectly blended for a thick, creamy, and refreshing treat.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Chickoo Milkshake</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">A delightful and wholesome milkshake made with fresh chickoo, blended into a smooth and naturally sweet treat.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="chickkooo.webp" alt="Chickoo Milkshake">
+    <p class="item-additional-info">A delightful and wholesome milkshake made with fresh, ripe chickoo, blended into a smooth and naturally sweet treat.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Brownie Milkshake</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Indulge in our decadent brownie milkshake, packed with rich chocolate flavor and real brownie chunks for a satisfying dessert in a glass.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="brownie milk.png" alt="Brownie Milkshake">
+    <p class="item-additional-info">Indulge in our decadent brownie milkshake, packed with rich chocolate flavor and real brownie chunks for a dessert in a glass.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Kit Kat Milkshake</h3>
+                    <span class="item-price">₹149</span>
+                </div>
+                <p class="item-description">Break into pure delight with our Kit Kat milkshake, featuring crunchy Kit Kat pieces blended into a smooth, chocolatey shake.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="kitkat.jpg" alt="Kit Kat Milkshake">
+    <p class="item-additional-info">Break into pure delight with our Kit Kat milkshake, featuring crunchy wafer pieces blended into a smooth, chocolatey shake.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Nutella Milkshake</h3>
+                    <span class="item-price">₹159</span>
+                </div>
+                <p class="item-description">Experience the irresistible flavor of hazelnut chocolate with our creamy Nutella milkshake, a rich and indulgent treat for any time of day.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="nutellamilk.webp" alt="Nutella Milkshake">
+    <p class="item-additional-info">Experience the irresistible flavor of hazelnut chocolate with our creamy Nutella milkshake, a rich and indulgent treat.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="mojitos">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍹</span> <h2 class="section-title">Mojito</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Classic Mint</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">A timeless refreshing blend of fresh mint leaves, zesty lime, a touch of sweetness, and sparkling soda.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="classicmit.jpg" alt="Classic Mint Mojito">
+    <p class="item-additional-info">The ultimate refreshment! A timeless blend of fresh muddled mint leaves, zesty lime, and a touch of sweetness, topped with sparkling soda.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Blue Heaven / Watermelon / Strawberry / Green Apple / Kiwi / Raspberry / Ginger / Mango</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Customize your mojito with a burst of fruity goodness! Choose from a vibrant array of refreshing fruit flavors.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="mojitto.webp" alt="Fruity Mojitos">
+    <p class="item-additional-info">Customize your mojito with a burst of fruity goodness! Choose from a vibrant array of refreshing fruit flavors to suit your mood.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cranberry Mojito</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Our classic mojito elevated with the tart and juicy notes of cranberry, offering a delightful sweet-sour balance.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="cranberrymo.jpg" alt="Cranberry Mojito">
+    <p class="item-additional-info">Our classic mojito elevated with the tart and juicy notes of cranberry, offering a delightful sweet-sour balance that is incredibly refreshing.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Guava Mojito</h3>
+                    <span class="item-price">₹139</span>
+                </div>
+                <p class="item-description">Experience a tropical escape with our guava mojito, blending the aromatic sweetness of ripe guava with refreshing mint and lime.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="guava.jpg" alt="Cranberry Mojito">
+    <p class="item-additional-info">Our classic mojito elevated with the tart and juicy notes of cranberry, offering a delightful sweet-sour balance that is incredibly refreshing.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="ice-tea">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍋</span> <h2 class="section-title">Ice Tea</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Classic Lemon</h3>
+                    <span class="item-price">₹119</span>
+                </div>
+                <p class="item-description">Our refreshing classic iced tea infused with a zesty burst of fresh lemon, perfect for a crisp and cool sip.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="clasiclemon.jpg" alt="Classic Lemon Ice Tea">
+    <p class="item-additional-info">Our refreshing classic iced tea infused with a zesty burst of fresh lemon, perfectly brewed for a crisp and cool sip.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Green Apple / Mango / Strawberry / Peach</h3>
+                    <span class="item-price">₹129</span>
+                </div>
+                <p class="item-description">Choose your favorite fruity twist! Our iced teas are available in vibrant Green Apple, tropical Mango, sweet Strawberry, or luscious Peach flavors.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="icee.jpg" alt="Fruity Ice Teas">
+    <p class="item-additional-info">Choose your favorite fruity twist! Our iced teas are available in vibrant Green Apple, tropical Mango, sweet Strawberry, or luscious Peach.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="Slush">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍧</span> <h2 class="section-title">Slush</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Blue / Green Apple / Strawberry / Mango</h3>
+                    <span class="item-price">₹99</span>
+                </div>
+                <p class="item-description">Cool down with our frosty slush, available in a vibrant array of flavors including tangy Blue, crisp Green Apple, sweet Strawberry, and tropical Mango.</p>
+                <div class="item-tags">
+                    <span class="tag cold">❄️ Cold</span>
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="slushess.webp" alt="Slush Flavors">
+    <p class="item-additional-info">Cool down with our frosty slush, available in a vibrant array of flavors including tangy Blue, crisp Green Apple, and sweet Strawberry.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="hot-tea">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍵</span> <h2 class="section-title">Hot Tea</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Masala / Assam Tea</h3>
+                    <span class="item-price">₹59</span>
+                </div>
+                <p class="item-description">Warm up with your choice of traditional Masala Chai, spiced to perfection, or the strong and malty notes of classic Assam tea.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="masala assam.webp" alt="Masala / Assam Tea">
+    <p class="item-additional-info">Warm up with your choice of traditional Masala Chai, spiced to perfection, or the strong and malty notes of classic Assam tea.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Kahwa / Tulsi / Lemon / Green / Black / Darjeeling</h3>
+                    <span class="item-price">₹59</span>
+                </div>
+                <p class="item-description">Explore our diverse selection of comforting hot teas, including Kashmiri Kahwa, herbal Tulsi, zesty Lemon, refreshing Green, classic Black, and aromatic Darjeeling.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="teaas.webp" alt="Herbal Teas">
+    <p class="item-additional-info">Explore our diverse selection of comforting hot teas, including Kashmiri Kahwa, herbal Tulsi, zesty Lemon, and aromatic Darjeeling.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="hot-beverages">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">☕</span> <h2 class="section-title">Hot Beverages</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cappuccino</h3>
+                    <span class="item-price">₹89</span>
+                </div>
+                <p class="item-description">Classic espresso with steamed milk and a rich layer of foam, dusted with cocoa. A comforting favorite.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="Cappuccino-exc.webp" alt="Cappuccino">
+    <p class="item-additional-info">A perfect balance of rich, bold espresso, steamed milk, and a luxurious cap of airy foam, dusted with cocoa powder.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Café Latte</h3>
+                    <span class="item-price">₹89</span>
+                </div>
+                <p class="item-description">Smooth espresso blended with abundant steamed milk, offering a mellow and creamy coffee experience.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="Cafe_au_lait.jpg" alt="Cafe latte">
+    <p class="item-additional-info">Smooth espresso blended with a generous amount of steamed milk, creating a creamy, mellow, and comforting coffee experience.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Cappuccino - Double Shot</h3>
+                    <span class="item-price">₹99</span>
+                </div>
+                <p class="item-description">An extra boost for your classic cappuccino, featuring a double shot of espresso for intensified coffee flavor.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="double.webp" alt="Cappuccino - Double Shot">
+    <p class="item-additional-info">For those who need an extra boost, our classic cappuccino supercharged with a double shot of intense, aromatic espresso.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Café Mocha</h3>
+                    <span class="item-price">₹99</span>
+                </div>
+                <p class="item-description">A delightful blend of rich chocolate, espresso, and steamed milk, topped with whipped cream for a sweet treat.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="cafemoch.jpg" alt="Cafe Mocha">
+    <p class="item-additional-info">A decadent blend of rich chocolate, fresh espresso, and steamed milk, topped with a swirl of whipped cream for a sweet treat.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Hot Chocolate</h3>
+                    <span class="item-price">₹99</span>
+                </div>
+                <p class="item-description">Rich and creamy hot chocolate, a comforting classic perfect for warming up on any day.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="hotch.jpg" alt="Hot Chocolate">
+    <p class="item-additional-info">Rich, creamy, and deeply comforting, our hot chocolate is made with premium cocoa for a classic indulgence.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Irish Coffee</h3>
+                    <span class="item-price">₹99</span>
+                </div>
+                <p class="item-description">A cozy, non-alcoholic coffee blend with notes of creamy Irish flavor, topped with a dollop of fresh cream.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="irish.jpg" alt="Irish Coffee">
+    <p class="item-additional-info">A cozy, non-alcoholic blend of smooth coffee with notes of creamy Irish flavor, topped with a dollop of fresh cream.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Caramel / Hazelnut / Irish Flavored Cappuccino</h3>
+                    <span class="item-price">₹109</span>
+                </div>
+                <p class="item-description">Customize your cappuccino with a delightful flavor shot: choose from sweet Caramel, nutty Hazelnut, or a creamy Irish essence.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div>
+                <div class="item-details">
+    <img src="cappp.jpeg" alt="Flavored Cappuccino">
+    <p class="item-additional-info">Customize your cappuccino with a delightful flavor shot: choose from sweet Caramel, nutty Hazelnut, or a creamy Irish essence.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Black Coffee - Americano</h3>
+                    <span class="item-price">₹69</span>
+                </div>
+                <p class="item-description">Bold and robust, our Americano features a perfect blend of espresso and hot water for a classic black coffee experience.</p>
+                <div class="item-tags">
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="black coffee americano.jpeg" alt="Black Coffee - Americano">
+    <p class="item-additional-info">Bold and robust, our Americano features a perfect blend of rich espresso shots and hot water for a classic black coffee experience.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Espresso Shots</h3>
+                    <span class="item-price">₹59</span>
+                </div>
+                <p class="item-description">Pure concentrated coffee perfection. A quick and intense shot of our signature espresso blend.</p>
+                <div class="item-tags">
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="espresso.webp" alt="Espresso Shots">
+    <p class="item-additional-info">Pure, concentrated coffee perfection. A quick and intense shot of our signature espresso blend for the true coffee lover.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Mint Black Coffee</h3>
+                    <span class="item-price">₹79</span>
+                </div>
+                <p class="item-description">A refreshing twist on black coffee, infused with cool mint for an invigorating and aromatic experience.</p>
+                <div class="item-tags">
+                    <span class="tag vegan">🌱 Vegan</span>
+                </div>
+                <div class="item-details">
+    <img src="mintblack.jpg" alt="Mint Black Coffee">
+    <p class="item-additional-info">A refreshing and aromatic twist on black coffee, infused with a hint of cool mint for an invigorating and unique flavor.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="menu-section" id="desserts">
+    <div class="section-content">
+        <div class="section-header">
+            <span class="section-emoji">🍰</span> <h2 class="section-title">Desserts</h2>
+        </div>
+        <div class="menu-items">
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Mexican Brownie</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">A rich, fudgy chocolate brownie with a subtle hint of cinnamon and a touch of cayenne for a unique, warm kick.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="mexicanbrowniesundaesthumb.jpg" alt="Mexican Brownie">
+    <p class="item-additional-info">A rich, fudgy chocolate brownie with a subtle hint of cinnamon and a touch of cayenne for a unique, warm kick that surprises and delights.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Mix Fruit Salad</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">A vibrant and refreshing medley of fresh seasonal fruits, perfectly diced and served chilled for a light, healthy treat.</p>
+                <div class="item-tags">
+                    <span class="tag vegan">🌱 Vegan</span>
+                    <span class="tag gluten-free">GF</span>
+                </div><div class="item-details">
+    <img src="mixfruit.jpg" alt="Mix Fruit Salad">
+    <p class="item-additional-info">A vibrant and refreshing medley of fresh seasonal fruits, perfectly diced and served chilled for a light, healthy treat.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Gadbad Ice-Cream</h3>
+                    <span class="item-price">₹169</span>
+                </div>
+                <p class="item-description">A popular Indian ice-cream sundae featuring layers of various ice creams, fruits, nuts, and jelly, creating a delightful 'mess'.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                    <span class="tag cold">❄️ Cold</span>
+                </div><div class="item-details">
+    <img src="gadbad.jpg" alt="Gadbad Ice-Cream">
+    <p class="item-additional-info">A popular Indian ice-cream sundae featuring layers of various ice creams, fruits, nuts, and jelly, creating a delightful 'mess'.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Sizzling Brownie</h3>
+                    <span class="item-price">₹199</span>
+                </div>
+                <p class="item-description">A warm, gooey chocolate brownie served on a hot sizzling plate, topped with a scoop of vanilla ice cream and drizzled with chocolate sauce.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="sizz.avif" alt="Sizzling Brownie">
+    <p class="item-additional-info">A warm, gooey chocolate brownie served on a hot sizzling plate, topped with vanilla ice cream and drizzled with chocolate sauce.</p>
+</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-header">
+                    <h3 class="item-name">Death By Chocolate</h3>
+                    <span class="item-price">₹189</span>
+                </div>
+                <p class="item-description">The ultimate chocolate indulgence! Layers of rich chocolate cake, dark chocolate fudge, and chocolate ganache for an intense cocoa experience.</p>
+                <div class="item-tags">
+                    <span class="tag vegetarian">🌿 Vegetarian</span>
+                </div><div class="item-details">
+    <img src="deathby.jpg" alt="Death By Chocolate">
+    <p class="item-additional-info">The ultimate chocolate indulgence! Layers of rich chocolate cake, dark chocolate fudge, and chocolate ganache for an intense cocoa experience.</p>
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span>🌱</span>
+                <span style="font-weight: 500; color: var(--primary);">Roots & Shoots</span>
+                <span>🌱</span>
+            </div>
+            <p class="footer-text">Fresh ingredients • Garden vibes • Made with love</p>
+            <p class="footer-text">Thank you for dining with us!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced navigation and interaction effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('header');
+            const navigation = document.getElementById('navigation');
+            const navItems = document.querySelectorAll('.nav-item');
+            const menuItems = document.querySelectorAll('.menu-item');
+            const sections = document.querySelectorAll('.menu-section');
+
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Update active navigation item based on scroll position
+                updateActiveNavigation();
+            });
+
+            // Navigation click handlers with enhanced effects
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const targetSection = this.getAttribute('data-section');
+                    const targetElement = document.getElementById(targetSection);
+                    
+                    // Add click animation
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 600);
+
+                    // Update active state
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Smooth scroll to section
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+
+                // Enhanced hover effects
+                item.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'translateY(-3px) scale(1.05)';
+                    }
+                });
+
+                item.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = '';
+                    }
+                });
+            });
+
+            // Menu item click effects
+           // Replace your existing menuItems.forEach loop with this one.
+menuItems.forEach(item => {
+    item.addEventListener('click', function() {
+        // Check if the item we clicked is already expanded
+        const isExpanded = this.classList.contains('expanded');
+
+        // First, close all other items by removing the 'expanded' class
+        menuItems.forEach(i => {
+            i.classList.remove('expanded');
+        });
+
+        // If the clicked item was NOT already expanded, expand it.
+        // This makes it so clicking an already open item will just close it.
+        if (!isExpanded) {
+            this.classList.add('expanded');
+        }
+    });
+
+    // We can keep the hover effects if you like
+    item.addEventListener('mouseenter', function() {
+        this.style.borderColor = 'var(--garden-fresh)';
+    });
+
+    item.addEventListener('mouseleave', function() {
+        this.style.borderColor = 'var(--border)';
+    });
+});
+
+            // Function to update active navigation based on scroll position
+            function updateActiveNavigation() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 200;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('data-section') === current) {
+                        item.classList.add('active');
+                         item.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                    }
+                });
+            }
+
+            // Ripple effect function
+            function createRippleEffect(element, event) {
+                const ripple = document.createElement('span');
+                const rect = element.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = event.clientX - rect.left - size / 2;
+                const y = event.clientY - rect.top - size / 2;
+
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(125, 180, 150, 0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    left: ${x}px;
+                    top: ${y}px;
+                    width: ${size}px;
+                    height: ${size}px;
+                    pointer-events: none;
+                `;
+
+                element.style.position = 'relative';
+                element.style.overflow = 'hidden';
+                element.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            }
+
+            // Add ripple animation to CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes ripple {
+                    to {
+                        transform: scale(2);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Parallax effect for background
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallax = scrolled * 0.5;
+                document.body.style.backgroundPosition = `0% ${parallax}px, 100% ${100 + parallax}px, 50% ${50 + parallax}px`;
+            });
+
+            // Add intersection observer for smoother animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Touch gesture support for mobile
+            let touchStartY = 0;
+            document.addEventListener('touchstart', function(e) {
+                touchStartY = e.touches[0].clientY;
+            });
+
+            document.addEventListener('touchmove', function(e) {
+                const touchY = e.touches[0].clientY;
+                const diff = touchStartY - touchY;
+                
+                // Add subtle bounce effect on overscroll
+                if (window.scrollY === 0 && diff < 0) {
+                    e.preventDefault();
+                    document.body.style.transform = `translateY(${Math.min(diff * 0.5, 20)}px)`;
+                } else {
+                    document.body.style.transform = '';
+                }
+            });
+
+            document.addEventListener('touchend', function() {
+                document.body.style.transform = '';
+            });
+        });
+        window.addEventListener('load', function() {
+        const overlay = document.getElementById('intro-overlay');
+
+        // Wait for 2.5 seconds (2500 milliseconds) then hide the overlay
+        setTimeout(function() {
+            overlay.classList.add('hidden');
+        }, 2500); // You can change this duration
+    });
+    </script>
+</body>
+</html>
