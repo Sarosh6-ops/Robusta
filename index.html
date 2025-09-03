@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,15 +18,14 @@
 
         .cold
         {
-            color: black;
+            color: var(--text-color);
         }
-        :root {
-            /* Nature-inspired color palette */
-            --background: hsl(210, 15%, 18%); /* The new dark background */
-    --foreground: hsl(45, 25%, 90%);
-            --card: hsl(50, 30%, 98%);
+        :root, html[data-theme="light"] {
+            --background: hsl(48, 29%, 96%);
+            --foreground: hsl(24, 15%, 18%);
+            --card: hsl(50, 30%, 100%);
             --card-foreground: hsl(24, 15%, 18%);
-            --primary: hsl(145, 40%, 25%);
+            --primary: hsl(145, 40%, 45%);
             --primary-foreground: hsl(45, 25%, 97%);
             --primary-soft: hsl(145, 25%, 85%);
             --secondary: hsl(145, 20%, 75%);
@@ -42,7 +41,31 @@
             --border: hsl(145, 15%, 88%);
             --shadow-soft: hsla(145, 40%, 25%, 0.1);
             --shadow-hover: hsla(145, 40%, 25%, 0.15);
-         
+            --text-color: #000000;
+        }
+
+        html[data-theme="dark"] {
+            --background: hsl(210, 15%, 18%);
+            --foreground: hsl(45, 25%, 90%);
+            --card: hsl(210, 15%, 22%);
+            --card-foreground: hsl(45, 25%, 90%);
+            --primary: hsl(145, 40%, 55%);
+            --primary-foreground: hsl(45, 25%, 97%);
+            --primary-soft: hsl(210, 15%, 30%);
+            --secondary: hsl(145, 20%, 75%);
+            --secondary-foreground: hsl(45, 25%, 90%);
+            --muted: hsl(210, 15%, 28%);
+            --muted-foreground: hsl(45, 15%, 65%);
+            --accent: hsl(15, 65%, 70%);
+            --accent-foreground: hsl(45, 25%, 97%);
+            --accent-soft: hsl(210, 15%, 35%);
+            --garden-fresh: hsl(125, 45%, 60%);
+            --garden-deep: hsl(145, 50%, 80%);
+            --earth-warm: hsl(25, 25%, 30%);
+            --border: hsl(210, 15%, 30%);
+            --shadow-soft: hsla(145, 40%, 5%, 0.2);
+            --shadow-hover: hsla(145, 40%, 5%, 0.3);
+            --text-color: #ffffff;
         }
 
         /* Styles for the new Add On's section */
@@ -52,7 +75,7 @@
     border-top: 1px dashed var(--border); /* A subtle dashed line divider */
 }
 .add-on-name{
-    color: black;
+    color: var(--text-color);
 }
 .add-ons-title {
     font-size: 1.125rem; /* Slightly larger than item names, smaller than section titles */
@@ -62,7 +85,7 @@
     text-align: center;
 }
 .egg-allergen{
-  color: black;
+  color: var(--text-color);
 }
 .add-on-item {
     display: flex;
@@ -110,7 +133,7 @@
             line-height: 1.6;
             overflow-x: hidden;
             /* Organic background pattern */
-            background-image: 
+            background-image:
                 radial-gradient(circle at 20% 20%, var(--primary-soft) 0, transparent 50%),
                 radial-gradient(circle at 80% 80%, var(--accent-soft) 0, transparent 50%),
                 radial-gradient(circle at 40% 90%, var(--earth-warm) 0, transparent 50%);
@@ -141,6 +164,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
             margin: 0 auto;
             padding: 1rem;
             text-align: center;
+            position: relative;
         }
 
         .logo {
@@ -173,12 +197,12 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
              font-size: 1.25rem;
     font-weight: bold;
     color: var(--primary);
-    
+
     /* --- Add these properties for the rounded box --- */
     border: 1px solid var(--border);
     padding: 0.25rem 0.75rem;
     border-radius: 9999px; /* This creates the pill shape */
-    
+
     /* --- Update the transition to include the glow effect --- */
     transition: color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
@@ -198,16 +222,16 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
         }
         .item-details {
     /* Hides the content by default */
-    max-height: 0; 
+    max-height: 0;
     overflow: hidden;
     padding-top: 0;
     margin-top: 0;
 
     /* Smooth transition for the expand/collapse animation */
     transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out, padding-top 0.5s ease-in-out;
-    
+
     /* A subtle line to separate the main content from the details */
-    border-top: 1px solid transparent; 
+    border-top: 1px solid transparent;
 }
 
 /* Styles for when the item is expanded */
@@ -257,7 +281,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
         }
 
         .nav-menu {
-           
+
             display: flex;
     /* For a sliding menu, flex-start is often more intuitive than space-around,
        as it allows items to naturally extend off-screen to the right. */
@@ -293,7 +317,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
             position: relative;
             overflow: hidden;
         }
-        
+
         .nav-item::before {
             content: '';
             position: absolute;
@@ -304,10 +328,10 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transition: left 0.5s ease;
         }
-   
+
         .nav-item:hover::before {
             left: 100%;
-            
+
         }
 
         .nav-item:not(.active) {
@@ -366,7 +390,6 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
             font-size: 1.125rem;
             font-weight: bold;
             color: var(--primary);
-            color: white;
         }
 
         /* Menu Item Styles */
@@ -420,7 +443,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
         .menu-item:hover {
            --translateY: -8px;
     --scale: 1.03;
-    
+
     /* These styles remain the same */
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
     border-color: var(--primary);
@@ -635,7 +658,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                 padding-left: 0.75rem;
                 padding-right: 0.75rem;
             }
-            
+
             .menu-item {
                 padding: 0.875rem;
             }
@@ -708,6 +731,40 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
     color: inherit; /* Makes the link use the parent text color */
     text-decoration: none; /* Removes the underline */
 }
+.theme-toggle-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--primary);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--primary-soft);
+}
+
+.theme-toggle-button .sun-icon {
+    display: none;
+}
+.theme-toggle-button .moon-icon {
+    display: block;
+}
+
+html[data-theme="dark"] .theme-toggle-button .sun-icon {
+    display: block;
+}
+html[data-theme="dark"] .theme-toggle-button .moon-icon {
+    display: none;
+}
     </style>
 </head>
 <body>
@@ -719,27 +776,31 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
             </svg>
             <span>🌱</span>
         </div>
-        <h1 style="color: black;">Cafe Robusta</h1>
-        
+        <h1>Cafe Robusta</h1>
+
     </div>
 </div>
     <!-- Header -->
     <header class="header" id="header">
-    <a class="header-link" href="#">
         <div class="header-content">
-            <div class="logo">
-                <div class="logo-icons">
-                    <svg class="leaf-icon" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"></path>
-                    </svg>
-                    <span>🌱</span>
+            <a class="header-link" href="#">
+                <div class="logo">
+                    <div class="logo-icons">
+                        <svg class="leaf-icon" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"></path>
+                        </svg>
+                        <span>🌱</span>
+                    </div>
+                    <h1>Cafe Robusta</h1>
                 </div>
-                <h1>Cafe Robusta</h1>
-            </div>
-            <p class="tagline">Fresh • Tasty • Natural</p>
+                <p class="tagline">Fresh • Tasty • Natural</p>
+            </a>
+            <button id="theme-toggle" class="theme-toggle-button" title="Toggle dark mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            </button>
         </div>
-    </a>
-</header>
+    </header>
 
     <!-- Navigation -->
     <nav class="navigation" id="navigation">
@@ -870,7 +931,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                 <div class="item-tags">
                     <span class="tag vegetarian">🌿 Vegetarian</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="Spicy-Mushroom-Fried-Rice.jpg" alt="mushroom fried rice">
         <p class="item-additional-info"> Earthy button mushrooms are sautéed with fragrant garlic and fluffy rice to create a simple yet deeply flavorful dish.</p>
@@ -886,7 +947,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                 <div class="item-tags">
                     <span class="tag vegetarian">🌿 Vegetarian</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="paneer-fried-rice-recipe.jpg" alt="Schezwan rice">
         <p class="item-additional-info"> Soft, golden-brown cubes of paneer provide a rich, protein-packed addition to our classic vegetable fried rice.</p>
@@ -902,7 +963,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                 <div class="item-tags">
                     <span class="tag vegetarian">🌿 Vegetarian</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="spaghetti-saute-gray-plate-with-tomatoes-basil.jpg" alt="Schezwan rice">
         <p class="item-additional-info">This pasta is lightly tossed in herbed olive oil with a vibrant mix of seasonal garden vegetables like zucchini, broccoli, and cherry tomatoes.</p>
@@ -918,7 +979,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                 <div class="item-tags">
                     <span class="tag vegetarian">🌿 Vegetarian</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="delicious-pasta-plate.jpg" alt="Schezwan rice">
         <p class="item-additional-info">Indulge in our velvety Alfredo sauce, crafted with rich cream and freshly grated Parmesan cheese, clinging perfectly to every strand of pasta.</p>
@@ -935,7 +996,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                     <span class="tag vegetarian">🌿 Vegetarian</span>
                     <span class="tag spicy">🌶️ Spicy</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="arrabiata-pasta-1.jpg" alt="Schezwan rice">
         <p class="item-additional-info"> Named for its 'angry' kick, our Arabiata sauce is a fiery blend of sun-ripened tomatoes, fresh garlic, and a generous amount of red chili flakes.</p>
@@ -952,7 +1013,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                     <span class="tag vegetarian">🌿 Vegetarian</span>
                     <span class="tag spicy">🌶️ Spicy</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="CreamyArrabbiataPasta.jpg" alt="Schezwan rice">
         <p class="item-additional-info">The perfect marriage of two classics, blending the spicy zest of Arabiata with a touch of smooth cream for a balanced, luxurious finish.</p>
@@ -966,7 +1027,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
         <div class="section-header">
             <span class="section-emoji">🍜</span> <h2 class="section-title">Noodles / Rice / Pasta 🟩 🔴</h2> </div>
         <div class="menu-items">
-            
+
 
             <div class="menu-item">
                 <div class="item-header">
@@ -978,7 +1039,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                     <span class="tag vegetarian">🌿 Vegetarian</span>
                     <span class="tag egg-allergen">🥚 Egg</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="EggNoodles3.webp" alt="Schezwan rice">
         <p class="item-additional-info"> Silky noodles and crisp vegetables are elevated with fluffy, protein-rich scrambled egg, stir-fried for a satisfying and complete meal.</p>
@@ -994,7 +1055,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                 <div class="item-tags">
                     <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="chickenfried.webp" alt="Schezwan rice">
         <p class="item-additional-info">Tender, juicy pieces of chicken are stir-fried with our signature fried rice, creating a hearty and flavorful classic that never disappoints.</p>
@@ -1011,7 +1072,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                     <span class="tag vegetarian">🌿 Vegetarian</span>
                     <span class="tag egg-allergen">🥚 Egg</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="EggFriedRice4.webp" alt="Schezwan rice">
         <p class="item-additional-info">A comforting bowl of perfectly cooked rice, enriched with golden, savory scrambled eggs and a light, delicate seasoning.</p>
@@ -1027,7 +1088,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                 <div class="item-tags">
                     <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="chickken hakka.jpg" alt="Schezwan rice">
         <p class="item-additional-info">Succulent strips of chicken join a medley of crunchy vegetables and savory noodles in this hearty, stir-fried favorite.</p>
@@ -1043,7 +1104,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                 <div class="item-tags">
                     <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="One-Pot_Creamy_Chicken_And_Broccoli_Pasta_THUMB.webp" alt="Schezwan rice">
         <p class="item-additional-info">Juicy, grilled chicken breast is sliced and tossed in our signature creamy Parmesan Alfredo sauce for a truly decadent meal.</p>
@@ -1060,7 +1121,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                     <span class="tag non-vegetarian">🔴 Non-Vegetarian</span>
                     <span class="tag spicy">🌶️ Spicy</span>
                 </div>
-                
+
         <div class="item-details">
         <img src="chicken_arrabiata_88408_16x9.jpg" alt="Schezwan rice">
         <p class="item-additional-info">For those who like it hot, tender pieces of chicken are simmered in our spicy and zesty Arabiata tomato sauce.</p>
@@ -1071,8 +1132,8 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
 </section>
 
         <!-- Savory Bites -->
-        
-        
+
+
     <section class="menu-section" id="small-bites-to-share">
     <div class="section-content">
         <div class="section-header">
@@ -2910,7 +2971,7 @@ background: linear-gradient(to bottom, hsla(50, 30%, 98%, 0.95), hsla(50, 30%, 9
                 item.addEventListener('click', function() {
                     const targetSection = this.getAttribute('data-section');
                     const targetElement = document.getElementById(targetSection);
-                    
+
                     // Add click animation
                     this.classList.add('clicked');
                     setTimeout(() => {
@@ -3069,7 +3130,7 @@ menuItems.forEach(item => {
             document.addEventListener('touchmove', function(e) {
                 const touchY = e.touches[0].clientY;
                 const diff = touchStartY - touchY;
-                
+
                 // Add subtle bounce effect on overscroll
                 if (window.scrollY === 0 && diff < 0) {
                     e.preventDefault();
@@ -3081,6 +3142,22 @@ menuItems.forEach(item => {
 
             document.addEventListener('touchend', function() {
                 document.body.style.transform = '';
+            });
+
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+
+            // Apply the saved theme on page load
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                htmlElement.setAttribute('data-theme', savedTheme);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                htmlElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
             });
         });
         window.addEventListener('load', function() {
